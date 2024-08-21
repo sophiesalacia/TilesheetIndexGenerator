@@ -70,18 +70,18 @@ public partial class MainWindow : Window
 	
 	private void BtnGenerate_OnClick(object sender, RoutedEventArgs e)
 	{
-		// show error if either width box input or height box input fails to validate as int
-		if (!int.TryParse(TileWidthInputBox.Text, out int tileWidth) || !int.TryParse(TileHeightInputBox.Text, out int tileHeight))
-		{
-			MessageBox.Show("An integer value must be entered for both the tile width and tile height.", "Invalid Tile Dimensions", MessageBoxButton.OK, MessageBoxImage.Error);
-			e.Handled = true;
-			return;
-		}
-
 		// different error if input image is null
 		if (DisplayImage.Source is null || Input is null)
 		{
 			MessageBox.Show("Image must be loaded first.", "No Input Image", MessageBoxButton.OK, MessageBoxImage.Error);
+			e.Handled = true;
+			return;
+		}
+
+		// show error if either width box input or height box input fails to validate as int
+		if (!int.TryParse(TileWidthInputBox.Text, out int tileWidth) || !int.TryParse(TileHeightInputBox.Text, out int tileHeight))
+		{
+			MessageBox.Show("An integer value must be entered for both the tile width and tile height.", "Invalid Tile Dimensions", MessageBoxButton.OK, MessageBoxImage.Error);
 			e.Handled = true;
 			return;
 		}
