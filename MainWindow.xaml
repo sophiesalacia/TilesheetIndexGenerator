@@ -1,0 +1,78 @@
+﻿<Window x:Class="TilesheetIndexGenerator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TilesheetIndexGenerator"
+        mc:Ignorable="d"
+        Title="Tilesheet Index Generator" Height="450" Width="800"
+        UseLayoutRounding="True">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0" Margin="5,5,0,0">
+            <!--<Label>Info</Label>-->
+            <!--<TextBox x:Name="txtInfo" MinWidth="250" MinHeight="100"/>-->
+            <Button x:Name="btnLoad" Margin="0,5,0,0" Click="BtnLoad_OnClick" Width="200">Load Image</Button>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0">Tile Width:</Label>
+                <TextBox Grid.Row="0" Grid.Column="1" Margin="5" Name="TileWidthInputBox" PreviewTextInput="CheckIfValidInput"/>
+                <Label Grid.Row="0" Grid.Column="2">Tile Height:</Label>
+                <TextBox Grid.Row="0" Grid.Column="3" Margin="5" Name="TileHeightInputBox" PreviewTextInput="CheckIfValidInput"/>
+
+
+                <RadioButton Content="X/Y Mode" Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0" Margin="5" Name="xyRadioButton" Click="xyRadioButton_Click"/>
+                <RadioButton Content="Index Mode" Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="2" Margin="5" Name="indexRadioButton" Click="indexRadioButton_Click"/>
+
+                <Button Grid.Row="3" Grid.ColumnSpan="4" Grid.Column="0" x:Name="btnGenerate" Margin="5" Click="BtnGenerate_OnClick">Generate Indices</Button>
+
+                <!--<Label Grid.Row="4" Grid.Column="0" Content="Hide Output:"/>-->
+                <!--<CheckBox Grid.Row="4" Grid.Column="1" Margin="5" Content="" x:Name="HideOutputCheckbox" Checked="HideOutputCheckBox_Changed" Unchecked="HideOutputCheckBox_Changed"/>-->
+
+                <!--<Label Grid.Row="4" Grid.Column="2" Content="Hide Input:"/>-->
+                <!--<CheckBox Grid.Row="4" Grid.Column="4" Margin="5" Content="" x:Name="HideInputCheckbox" Checked="HideInputCheckBox_Changed" Unchecked="HideInputCheckBox_Changed"/>-->
+
+                <Label Grid.Row="4" Grid.Column="0" Content=""/>
+
+            </Grid>
+            <Button x:Name="btnSaveIndicesOnly" Click="BtnSaveIndicesOnly_OnClick" Content="Save Indices Only" Width="200"/>
+
+
+
+            <Button x:Name="btnSaveTilesheetWithIndices" Margin="5" Click="BtnSaveTilesheetWithIndices_OnClick" Width="200" Content="Save Tilesheet With Indices"/>
+            <Label Content="Note: Do not overwrite your tilesheet.&#xD;&#xA;You will be sad." Height="86"/>
+
+        </StackPanel>
+
+
+        <local:ZoomBorder x:Name="ZoomBorder" Grid.Column="1" ClipToBounds="True" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Image Name="DisplayImage" HorizontalAlignment="Center" Margin="10" VerticalAlignment="Center" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+        </local:ZoomBorder>
+        <!--<Image Name="InputImage" Stretch="UniformToFill" HorizontalAlignment="Center" Margin="10" VerticalAlignment="Center"/>-->
+        <!--<Image Name="OverlayImage" Grid.Column="1" Stretch="UniformToFill" HorizontalAlignment="Left" Height="100" Margin="10" VerticalAlignment="Top" Width="100"/>-->
+
+    </Grid>
+
+</Window>
